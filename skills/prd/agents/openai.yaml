@@ -1,0 +1,6 @@
+interface:
+  display_name: "PRD"
+  short_description: "Product thinking, PRDs and prototype handoffs"
+  default_prompt: "Write a PRD for "
+policy:
+  allow_implicit_invocation: true
