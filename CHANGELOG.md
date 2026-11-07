@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0 · 2026-11-07
+- Renamed to **PRD Generator and Product Quiz Agent** (`skills/prd-generator`).
+- Quiz mode: asks the five product questions one at a time, grades each answer, and ends with a scorecard that turns into a PRD.
+- README and manifests no longer refer to release dates.
+
 ## 0.1.0 · 2026-11-06
 - `prd`: work through a product problem and write or review a PRD.
   - Product thinking: problem framing, PMF hypothesis and stage, north star tree, goals and non-goals, RICE prioritisation with logged overrides.

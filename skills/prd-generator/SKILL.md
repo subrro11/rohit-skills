@@ -1,9 +1,9 @@
 ---
-name: prd
-description: Work through a product problem and write or review a PRD that a team and a coding agent can build from. It answers the product questions first (problem framing, product–market fit hypothesis, north star and input metrics, goals and non-goals, feature prioritisation), then writes requirements with testable acceptance criteria and a prompt to prototype with a coding agent. Use when someone says "write a PRD", "draft a spec", "product requirements", "turn this idea into a PRD", "one-pager", "feature spec", "review my PRD", "do we have product-market fit", "what should our north star be", "help me prioritise features", "goals and non-goals", or pastes rough notes, a brief or a transcript and wants requirements out of it.
+name: prd-generator
+description: PRD Generator and Product Quiz Agent. Quizzes a PM through a product problem, or writes or reviews a PRD that a team and a coding agent can build from. It answers the product questions first (problem framing, product–market fit hypothesis, north star and input metrics, goals and non-goals, feature prioritisation), then writes requirements with testable acceptance criteria and a prompt to prototype with a coding agent. Use when someone says "write a PRD", "draft a spec", "product requirements", "turn this idea into a PRD", "one-pager", "feature spec", "review my PRD", "do we have product-market fit", "what should our north star be", "help me prioritise features", "goals and non-goals", "quiz me on my product", "stress-test my idea", or pastes rough notes, a brief or a transcript and wants requirements out of it.
 ---
 
-# PRD
+# PRD Generator and Product Quiz Agent
 
 A PRD records decisions. It says what to build, for whom, why now, what is deliberately left out, how we will know it worked, and what has to be true before each release. Everything else is supporting evidence.
 
@@ -12,7 +12,7 @@ The full loop is **problem → product thinking → PRD → prototype with a cod
 Three modes:
 
 - **Write**: idea, notes or brief → PRD. Follow steps 1–8.
-- **Answer**: a single product question (Do we have PMF? What's our north star? What do we build first? What are our non-goals?) → do step 3 for that question only, give a recommendation, and offer to turn it into a PRD.
+- **Quiz**: the user wants to think a product through, or asks a product question (Do we have PMF? What's our north star? What do we build first? What are our non-goals?). Run the [Quiz mode](#quiz-mode), then offer to turn the answers into a PRD.
 - **Review**: existing PRD → scored critique + revised version. Jump to [Review mode](#review-mode).
 
 ## 1. Pick the size
@@ -51,7 +51,7 @@ Before writing any requirement, work through `references/product-thinking.md` in
 4. **Goals and non-goals**: 3–5 outcome goals, plus non-goals of three kinds (deferred with a trigger, out of scope, and not optimising for).
 5. **Prioritisation**: score candidate features (RICE by default), then override on purpose for the core loop, the riskiest assumption, and basic expectations. Log each override.
 
-Show your working briefly in chat: one line per answer, so the user can push back before the full draft. If an answer is weak (no workaround, no PMF signal, no link to the north star), say so plainly and recommend discovery before a build.
+In Write mode, show your working briefly in chat: one line per answer, so the user can push back before the full draft. If an answer is weak (no workaround, no PMF signal, no link to the north star), say so plainly and recommend discovery before a build.
 
 ## 4. Write it in this order
 
@@ -102,6 +102,19 @@ Run `references/quality-checklist.md` against the draft and fix every failure. T
 - On a revision, bump the version and add a short changelog at the top: what changed and why, one line each.
 
 **Next step: a prototype.** Offer to write `PROTOTYPE-PROMPT.md` from `references/prototype-handoff.md`: a prompt the user can give to a coding agent (Claude Code, Codex, Cursor, Grok Build or similar) to build the thinnest clickable version of the P0 core loop, so the riskiest assumption in the PMF hypothesis can be put in front of real users this week. After the test, revise the PRD with what was learned (version bump, changelog).
+
+## Quiz mode
+
+Quiz the user through the five product questions in `references/product-thinking.md`, one question per message:
+
+1. Ask the question in plain words, with one line on why it matters and an example of a strong answer from a different product.
+2. Wait for their answer. Then give a verdict (strong, needs work or missing), say what's missing in one or two lines, and ask one follow-up if the gap matters.
+3. Move on once the answer passes the tests in `references/product-thinking.md`, or the user wants to move on. Record unresolved gaps as open questions.
+4. After the last question, show a scorecard: one line per question with the answer, the verdict and the gap. Then offer to generate the PRD from it.
+
+If the user asks a single question ("What should our north star be?"), quiz only that topic: ask what you need, then give a recommendation with your reasoning.
+
+Keep the tone of a sharp colleague. Push back on vague answers, but don't lecture. Never answer for the user and then grade your own answer.
 
 ## Review mode
 

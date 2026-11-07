@@ -12,13 +12,13 @@ PMs who need to spin up a PRD for the product or feature they're working on now,
 - **You need answers before requirements**: is there product–market fit, what's the north star, what are the goals and non-goals, and what do we build first.
 - **You want to prototype straight away** by handing the PRD to a coding agent.
 
-**Use it with deep research.** `prd` is built to run after a research pass. Research gathers the market, competitor and user evidence; `prd` turns that evidence into decisions and labels every claim as sourced or assumed. Run the research with a deep-research skill or your agent's own research tool, or paste in research you already have.
+**Use it with deep research.** The PRD Generator is built to run after a research pass. Research gathers the market, competitor and user evidence; the PRD Generator turns that evidence into decisions and labels every claim as sourced or assumed. Run the research with a deep-research skill or your agent's own research tool, or paste in research you already have.
 
 ## Skills
 
 | Skill | What it does | Since |
 |---|---|---|
-| [`prd`](skills/prd/) | Works through a product problem (PMF hypothesis, north star, goals and non-goals, prioritisation), writes or reviews the PRD, then hands off a prototype prompt for a coding agent | 0.1.0 |
+| [PRD Generator and Product Quiz Agent](skills/prd-generator/) | Quizzes you through the product questions (problem, PMF, north star, goals and non-goals, prioritisation), writes or reviews the PRD, then hands off a prototype prompt for a coding agent | 0.2.0 |
 
 ## Install
 
@@ -36,18 +36,18 @@ Both read skills from `~/.agents/skills/`. Clone once and link, so a `git pull` 
 ```bash
 git clone https://github.com/subrro11/pm-skills ~/pm-skills
 mkdir -p ~/.agents/skills
-ln -s ~/pm-skills/skills/prd ~/.agents/skills/prd
+ln -s ~/pm-skills/skills/prd-generator ~/.agents/skills/prd-generator
 ```
 
-To install for a single project, link it into that repo's `.agents/skills/` instead. In Codex you can also ask `$skill-installer` to install `skills/prd` from `github.com/subrro11/pm-skills`. Restart the app if the skill doesn't appear.
+To install for a single project, link it into that repo's `.agents/skills/` instead. In Codex you can also ask `$skill-installer` to install `skills/prd-generator` from `github.com/subrro11/pm-skills`. Restart the app if the skill doesn't appear.
 
 **Grok Bot**
 
-Add `skills/prd/SKILL.md` as a custom skill in Grok Bot, or attach the file and ask Grok to follow it. Grok Build reads skill folders from `~/.grok/skills/`: link `skills/prd` there as above.
+Add `skills/prd-generator/SKILL.md` as a custom skill in Grok Bot, or attach the file and ask Grok to follow it. Grok Build reads skill folders from `~/.grok/skills/`: link `skills/prd-generator` there as above.
 
 **Claude.ai**
 
-Zip the `skills/prd/` folder (keep the folder name `prd`) and upload it under Customize → Skills → Create skill → Upload a skill. Code execution must be on.
+Zip the `skills/prd-generator/` folder (keep the folder name `prd-generator`) and upload it under Customize → Skills → Create skill → Upload a skill. Code execution must be on.
 
 **Any other agent**
 
@@ -55,9 +55,9 @@ Point it at `skills/<name>/SKILL.md`.
 
 ## Use
 
-Ask in plain words: *"Write a PRD for …"*, *"What should our north star be?"*, *"Prioritise this backlog"*, *"Review this PRD"*. In Codex you can also type `$prd`, and in Claude Code `/pm-skills:prd`.
+Ask in plain words: *"Write a PRD for …"*, *"Quiz me on my product"*, *"What should our north star be?"*, *"Prioritise this backlog"*, *"Review this PRD"*. In Codex you can also type `$prd-generator`, and in Claude Code `/pm-skills:prd-generator`.
 
-## How `prd` works
+## How the PRD Generator works
 
 ```
 Problem → Product thinking → PRD → Prototype with a coding agent → Test → Revise
@@ -67,7 +67,7 @@ Problem → Product thinking → PRD → Prototype with a coding agent → Test 
 - **It writes the PRD from those answers.** The PRD leads with a recommendation, labels every number as sourced, assumed or fictional, splits scope into in scope, deferred and out of scope, and gives every P0 a testable acceptance criterion.
 - **The next step is a prototype.** It writes `PROTOTYPE-PROMPT.md` for a coding agent (Claude Code, Codex, Cursor) to build the thinnest version of the core loop that tests the riskiest assumption. You test it with five users, then revise the PRD.
 
-Details, prompts and files are in the [skill README](skills/prd/README.md). There's also a [worked example](skills/prd/examples/quiet-hours-lite.md) and its [prototype prompt](skills/prd/examples/quiet-hours-prototype-prompt.md).
+Details, prompts and files are in the [skill README](skills/prd-generator/README.md). There's also a [worked example](skills/prd-generator/examples/quiet-hours-lite.md) and its [prototype prompt](skills/prd-generator/examples/quiet-hours-prototype-prompt.md).
 
 ## Changes
 

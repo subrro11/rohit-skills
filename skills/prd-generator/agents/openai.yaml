@@ -1,0 +1,6 @@
+interface:
+  display_name: "PRD Generator and Product Quiz Agent"
+  short_description: "Quiz your product thinking, then generate the PRD"
+  default_prompt: "Write a PRD for "
+policy:
+  allow_implicit_invocation: true

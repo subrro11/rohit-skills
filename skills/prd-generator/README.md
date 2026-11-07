@@ -1,4 +1,4 @@
-# prd
+# PRD Generator and Product Quiz Agent
 
 Takes a product idea from "we should build X" to a PRD a team can commit to and a coding agent can prototype from the same day.
 
@@ -6,7 +6,7 @@ Most PRD templates start at requirements. This skill starts one step earlier, wi
 
 **Who it's for:** PMs spinning up a PRD for the product or feature they're working on now.
 
-**Best with deep research:** run a research pass first, and `prd` turns the evidence into decisions, citing what's sourced and labelling what's assumed. Use a deep-research skill or your agent's own research tool, or paste in research you already have.
+**Best with deep research:** run a research pass first, and the PRD Generator turns the evidence into decisions, citing what's sourced and labelling what's assumed. Use a deep-research skill or your agent's own research tool, or paste in research you already have.
 
 ## The loop
 
@@ -34,7 +34,7 @@ The skill covers steps 1–3 and writes the handoff for step 4. **After the PRD,
 | **What are the goals and non-goals?** | 3–5 outcome goals, plus non-goals of three kinds: deferred (with a trigger), out of scope (positioning), and not optimising for (the tradeoff) | Goals and scope |
 | **What do we build first?** | RICE scores for contested items, deliberate overrides for the core loop, the riskiest assumption and basic expectations, and every override logged | Requirements (priority) and the decision log |
 
-You can ask any one of these on its own. For example, *"What should the north star be for a marketplace for home tutors?"* or *"Prioritise these eight features"* gets you a recommendation without a full PRD.
+**Quiz mode:** say *"Quiz me on my product"* and it asks the five questions one at a time. It grades each answer (strong, needs work or missing), pushes back on vague ones, and ends with a scorecard you can turn straight into a PRD. You can also ask any one of these on its own. For example, *"What should the north star be for a marketplace for home tutors?"* or *"Prioritise these eight features"* gets you a recommendation without a full PRD.
 
 ## Use it
 
