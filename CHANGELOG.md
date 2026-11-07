@@ -7,4 +7,4 @@
   - Prototype handoff: a coding-agent prompt that tests the riskiest assumption.
   - Fictional worked example plus its prototype prompt.
   - Works in Claude Code (plugin), Claude.ai, Codex and Cursor (`~/.agents/skills/`), and Grok Bot / Grok Build.
-  - Uses research output as its evidence base; pairs with `deep-research` (next release).
+  - Uses research output as its evidence base, so it pairs well with a deep-research pass.

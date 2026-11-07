@@ -6,7 +6,7 @@ Most PRD templates start at requirements. This skill starts one step earlier, wi
 
 **Who it's for:** PMs spinning up a PRD for the product or feature they're working on now.
 
-**Best with deep research:** run a research pass first, and `prd` turns the evidence into decisions, citing what's sourced and labelling what's assumed. The `deep-research` skill ships 2026-11-13. Until then, `prd` will use pasted research or your agent's own research tool.
+**Best with deep research:** run a research pass first, and `prd` turns the evidence into decisions, citing what's sourced and labelling what's assumed. Use a deep-research skill or your agent's own research tool, or paste in research you already have.
 
 ## The loop
 

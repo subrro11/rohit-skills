@@ -1,6 +1,6 @@
 {
   "name": "pm-skills",
-  "description": "Skills for product managers who build. A new one every Friday.",
+  "description": "Skills for product managers who build.",
   "owner": {
     "name": "Rohit Subramaniam",
     "url": "https://github.com/subrro11"
@@ -9,7 +9,7 @@
     {
       "name": "pm-skills",
       "source": "./",
-      "description": "Skills for product managers who build: PRDs with PMF, north star and prioritisation thinking, handed off to a coding agent to prototype. A new skill every Friday.",
+      "description": "Skills for product managers who build: PRDs with PMF, north star and prioritisation thinking, handed off to a coding agent to prototype.",
       "version": "0.1.0"
     }
   ]

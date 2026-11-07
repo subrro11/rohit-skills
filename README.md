@@ -1,6 +1,6 @@
 # pm-skills
 
-Skills for product managers who build with AI. One new skill ships every Friday.
+Skills for product managers who build with AI.
 
 Works with **Claude** (Claude Code and Claude.ai), **Codex**, **Cursor** and **Grok Bot**. Each skill is a plain `SKILL.md` folder in the open [Agent Skills](https://agentskills.io) format, and each one is built from how I run product work.
 
@@ -12,7 +12,7 @@ PMs who need to spin up a PRD for the product or feature they're working on now,
 - **You need answers before requirements**: is there product–market fit, what's the north star, what are the goals and non-goals, and what do we build first.
 - **You want to prototype straight away** by handing the PRD to a coding agent.
 
-**Use it with deep research.** `prd` is built to run after a research pass. Research gathers the market, competitor and user evidence; `prd` turns that evidence into decisions and labels every claim as sourced or assumed. The `deep-research` skill ships next Friday (2026-11-13). Until then, `prd` will use any research you paste in, or whatever research tool your agent has.
+**Use it with deep research.** `prd` is built to run after a research pass. Research gathers the market, competitor and user evidence; `prd` turns that evidence into decisions and labels every claim as sourced or assumed. Run the research with a deep-research skill or your agent's own research tool, or paste in research you already have.
 
 ## Skills
 
@@ -31,7 +31,7 @@ PMs who need to spin up a PRD for the product or feature they're working on now,
 
 **Codex and Cursor**
 
-Both read skills from `~/.agents/skills/`. Clone once and link, so a `git pull` picks up each Friday's new skill:
+Both read skills from `~/.agents/skills/`. Clone once and link, so a `git pull` picks up new skills and updates:
 
 ```bash
 git clone https://github.com/subrro11/pm-skills ~/pm-skills
@@ -69,9 +69,9 @@ Problem → Product thinking → PRD → Prototype with a coding agent → Test 
 
 Details, prompts and files are in the [skill README](skills/prd/README.md). There's also a [worked example](skills/prd/examples/quiet-hours-lite.md) and its [prototype prompt](skills/prd/examples/quiet-hours-prototype-prompt.md).
 
-## Release cadence
+## Changes
 
-A new skill or a meaningful upgrade every Friday. See [CHANGELOG.md](CHANGELOG.md).
+See [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
