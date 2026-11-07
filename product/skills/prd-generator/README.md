@@ -38,7 +38,7 @@ The skill covers steps 1–3 and writes the handoff for step 4. **After the PRD,
 
 ## Use it
 
-Once installed (see the [repo README](../../README.md)), talk to it normally:
+Once installed (see the [repo README](../../../README.md)), talk to it normally:
 
 - *"Write a PRD for …"* plus your notes, a brief or a call transcript
 - *"Do we have product–market fit? Here's our retention and survey data …"*
@@ -68,5 +68,6 @@ It asks at most five questions in one round, each with a default answer, and sho
 | [`references/template-standard.md`](references/template-standard.md) | Full PRD for a team build, plus optional sections for a Full PRD |
 | [`references/quality-checklist.md`](references/quality-checklist.md) | 41 checks used both before handover and in review mode |
 | [`references/prototype-handoff.md`](references/prototype-handoff.md) | How to choose what to prototype, and the template for the coding-agent prompt |
+| [`examples/shiftplate/`](examples/shiftplate/) | End-to-end showcase: a real quiz run, the PRD it produced, and the prototype prompt (fictional product) |
 | [`examples/quiet-hours-lite.md`](examples/quiet-hours-lite.md) | Worked Lite PRD (fictional) |
 | [`examples/quiet-hours-prototype-prompt.md`](examples/quiet-hours-prototype-prompt.md) | Its prototype handoff (fictional) |

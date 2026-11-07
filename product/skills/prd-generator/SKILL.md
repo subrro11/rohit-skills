@@ -127,4 +127,4 @@ When given an existing PRD:
 
 ## Examples
 
-`examples/quiet-hours-lite.md` is a complete Lite PRD, and `examples/quiet-hours-prototype-prompt.md` is its prototype handoff. Both are for a fictional feature. Use them to judge length and tone; don't reuse their content.
+`examples/shiftplate/` is a full run: quiz transcript, the PRD it produced, and the prototype prompt. `examples/quiet-hours-lite.md` is a complete Lite PRD, and `examples/quiet-hours-prototype-prompt.md` is its prototype handoff. Both are for a fictional feature. Use them to judge length and tone; don't reuse their content.

@@ -1,0 +1,10 @@
+{
+  "name": "product",
+  "version": "0.3.0",
+  "description": "Product management skills: a PRD generator and product quiz agent that works through PMF, north star, goals and prioritisation, then hands off a prototype prompt to a coding agent.",
+  "author": { "name": "Rohit Subramaniam", "url": "https://github.com/subrro11" },
+  "homepage": "https://github.com/subrro11/rohit-skills/tree/main/product",
+  "repository": "https://github.com/subrro11/rohit-skills",
+  "license": "MIT",
+  "keywords": ["product-management", "prd", "product-market-fit", "north-star", "prioritisation", "prototyping"]
+}

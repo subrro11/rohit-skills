@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0 · 2026-11-07
+- Repo renamed to **rohit-skills**, grouped by discipline: `rohit-skills › product › prd-generator`. Install with `/plugin install product@rohit-skills` or `npx skills add subrro11/rohit-skills`.
+- Added an end-to-end showcase (`examples/shiftplate/`): a real quiz run, its PRD and its prototype prompt, on a fictional product.
+- Added a demo GIF and a "Try this first" prompt to the README.
+
 ## 0.2.0 · 2026-11-07
 - Renamed to **PRD Generator and Product Quiz Agent** (`skills/prd-generator`).
 - Quiz mode: asks the five product questions one at a time, grades each answer, and ends with a scorecard that turns into a PRD.

@@ -1,16 +1,13 @@
 {
-  "name": "pm-skills",
-  "description": "Skills for product managers who build.",
-  "owner": {
-    "name": "Rohit Subramaniam",
-    "url": "https://github.com/subrro11"
-  },
+  "name": "rohit-skills",
+  "description": "Agent skills by Rohit Subramaniam, grouped by discipline.",
+  "owner": { "name": "Rohit Subramaniam", "url": "https://github.com/subrro11" },
   "plugins": [
     {
-      "name": "pm-skills",
-      "source": "./",
-      "description": "Skills for product managers who build: PRDs with PMF, north star and prioritisation thinking, handed off to a coding agent to prototype.",
-      "version": "0.2.0"
+      "name": "product",
+      "source": "./product",
+      "description": "Product management skills: a PRD generator and product quiz agent that works through PMF, north star, goals and prioritisation, then hands off a prototype prompt to a coding agent.",
+      "version": "0.3.0"
     }
   ]
 }
