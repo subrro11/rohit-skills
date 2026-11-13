@@ -14,7 +14,7 @@ Go ahead with the pilot, but change two things. First, set the use-by default to
 
 ## Problem
 
-**Confidence:** Medium
+**Confidence:** Medium for segment size and food safety; Low for eating patterns
 
 - **Who and how many:** nearly a quarter of a 2,273-RN US sample rotated shifts in 2006 (E1), and more than a quarter worked 12+ hour days (E2). One study, 20 years old.
 - **What they eat, and when:** a 2019 review reports more snacking, a later last meal, eating at night and irregular meals among night-shift nurses (E3), but says the evidence is limited by how few studies exist (E4). This supports the "4am crash" from the founder's interviews (*user-supplied*) as a theme, not as a measured cost.
