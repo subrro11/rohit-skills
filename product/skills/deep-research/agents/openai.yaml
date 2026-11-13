@@ -1,0 +1,6 @@
+interface:
+  display_name: "Deep Research"
+  short_description: "Cited market, competitor and user research that feeds a PRD"
+  default_prompt: "Research "
+policy:
+  allow_implicit_invocation: true
