@@ -6,7 +6,15 @@ Most PRD templates start at requirements. This skill starts one step earlier, wi
 
 **Who it's for:** PMs spinning up a PRD for the product or feature they're working on now.
 
-**Best with deep research:** run a research pass first, and the PRD Generator turns the evidence into decisions, citing what's sourced and labelling what's assumed. Use a deep-research skill or your agent's own research tool, or paste in research you already have.
+**Best after research:** run [Deep Research](../deep-research/) first, and the PRD Generator turns its evidence into decisions, citing what's sourced and labelling what's assumed. You can also paste in research you already have.
+
+## Try it
+
+```
+Quiz me on my product. <Product> is <what it does> for <who>.
+```
+
+It asks five questions one at a time, grades each answer, and ends with a scorecard. Then say *"Write the Lite PRD, then the prototype prompt."* You can also call it directly: `/product:prd-generator` in Claude Code, `$prd-generator` in Codex.
 
 ## The loop
 
@@ -57,6 +65,20 @@ It asks at most five questions in one round, each with a default answer, and sho
 - **Acceptance criteria are tests.** Words like "intuitive" or "seamless" aren't allowed without a threshold.
 - **Release gates are pass/fail checks.**
 - **It ends with a prototype**: the riskiest assumption, the fidelity (clickable, working slice or Wizard of Oz), what to fake, and when it's done.
+
+## See it work
+
+[Shiftplate](examples/shiftplate/) is a real run on a fictional product: the quiz, the PRD it produced and the prototype prompt. The [research pass](../deep-research/examples/shiftplate/) that followed fills the PRD's Evidence needed lines.
+
+## Install just this skill
+
+**Any agent:** `npx skills add subrro11/rohit-skills`, then choose `prd-generator`.
+
+**Claude Code:** `/plugin marketplace add subrro11/rohit-skills`, then `/plugin install product@rohit-skills` (installs every product skill).
+
+**Codex, Cursor, Grok Build:** clone the repo and link this folder into `~/.agents/skills/prd-generator` (or `~/.grok/skills/` for Grok Build).
+
+**Claude.ai:** zip this folder, keeping the name `prd-generator`, and upload it under Customize → Skills.
 
 ## Files
 

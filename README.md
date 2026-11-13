@@ -10,6 +10,7 @@ Agent skills I use for product work, grouped by discipline. Works with **Claude*
 
 | Discipline | Skill | What it does |
 |---|---|---|
+| **product** | [Deep Research](product/skills/deep-research/) | Researches a company or idea in order (company, competitors, news, trends, then frameworks like five forces and positioning maps) and writes a cited report with every claim graded, gaps listed as Evidence needed, and a handoff into the PRD |
 | **product** | [PRD Generator and Product Quiz Agent](product/skills/prd-generator/) | Quizzes you through the product questions (problem, PMF, north star, goals and non-goals, prioritisation), writes or reviews the PRD, then hands off a prototype prompt for a coding agent |
 
 Each discipline is its own plugin (`rohit-skills › product › prd-generator`), so you can install only the area you need.
@@ -22,7 +23,7 @@ PMs who need to spin up a PRD for the product or feature they're working on now,
 - **You need answers before requirements**: is there product–market fit, what's the north star, what are the goals and non-goals, and what do we build first.
 - **You want to prototype straight away** by handing the PRD to a coding agent.
 
-**Use it with deep research.** The PRD Generator works best after a research pass. Research gathers the market, competitor and user evidence; the PRD Generator turns it into decisions and labels every claim as sourced or assumed. Use a deep-research skill or your agent's own research tool, or paste in research you already have.
+**Research first, then the PRD.** Deep Research works through the company, competitors, news and trends, applies the right frameworks, and ends with a table that maps each finding to a PRD section. The PRD Generator turns that evidence into decisions and labels every claim as sourced or assumed. You can also paste in research you already have.
 
 ## Install
 
@@ -47,17 +48,18 @@ Both read skills from `~/.agents/skills/`. Clone once and link, so a `git pull` 
 git clone https://github.com/subrro11/rohit-skills ~/rohit-skills
 mkdir -p ~/.agents/skills
 ln -s ~/rohit-skills/product/skills/prd-generator ~/.agents/skills/prd-generator
+ln -s ~/rohit-skills/product/skills/deep-research ~/.agents/skills/deep-research
 ```
 
 To install for one project only, link it into that repo's `.agents/skills/` instead.
 
 **Grok**
 
-Add `product/skills/prd-generator/SKILL.md` as a custom skill in Grok Bot, or attach the file and ask Grok to follow it. Grok Build reads skill folders from `~/.grok/skills/`: link the folder there as above.
+Add a skill's `SKILL.md` (for example `product/skills/prd-generator/SKILL.md`) as a custom skill in Grok Bot, or attach the file and ask Grok to follow it. Grok Build reads skill folders from `~/.grok/skills/`: link the folder there as above.
 
 **Claude.ai**
 
-Zip the `product/skills/prd-generator/` folder (keep the folder name `prd-generator`) and upload it under Customize → Skills → Create skill → Upload a skill. Code execution must be on.
+Zip a skill's folder, such as `product/skills/prd-generator/` (keep the folder name) and upload it under Customize → Skills → Create skill → Upload a skill. Code execution must be on.
 
 **Any other agent**
 
@@ -72,6 +74,8 @@ Quiz me on my product. <Product> is <what it does> for <who>.
 ```
 
 It asks five questions one at a time, grades each answer, and ends with a scorecard. Then say *"Write the Lite PRD, then the prototype prompt."*
+
+For research: *"Research the market for <product>, then write the PRD."*
 
 Other prompts: *"Write a PRD from these notes"*, *"What should our north star be?"*, *"Prioritise this backlog"*, *"Review this PRD"*. You can also call it directly: `/product:prd-generator` in Claude Code, `$prd-generator` in Codex.
 

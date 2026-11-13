@@ -12,3 +12,5 @@ Moments worth looking at:
 - **Q2:** the founder calls it problem fit, but the skill points out that the test checks solution fit. It also catches that the value claim doesn't fix the cost named in Q1.
 - **Q5:** the skill adds a P0 the founder missed (manual rota entry), and logs why each override was made.
 - **PRD:** "Why now" is marked *Evidence needed* because the inputs didn't support one, and the 4-day use-by default is flagged for checking against food-safety guidance.
+
+Next: [the research pass](../../../deep-research/examples/shiftplate/) that fills this PRD's Evidence needed lines.
