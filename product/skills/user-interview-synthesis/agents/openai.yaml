@@ -1,0 +1,6 @@
+interface:
+  display_name: "User Interview Synthesis"
+  short_description: "Evidence-tagged themes, insights and opportunities from research notes"
+  default_prompt: "Synthesise these research notes: "
+policy:
+  allow_implicit_invocation: true

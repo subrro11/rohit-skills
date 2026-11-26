@@ -1,0 +1,170 @@
+<!doctype html>
+<!--
+  Fictional showcase. Shiftplate is a made-up product. This is index.html with the copy
+  review's apply list (../REVIEW.md) applied: strings only, plus the smallest logic needed for
+  generated strings (dates, plurals, per-field errors, the past use-by message). UX problems
+  listed under "Out of scope" in the review are left as they were, for the ux-review skill.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shiftplate</title>
+<style>
+  :root { --ink:#1d1d1f; --muted:#aaaaaa; --line:#e6e6e6; --brand:#2f7d5b; --bg:#fafaf7; --warn:#c0392b; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:15px/1.45 -apple-system, system-ui, sans-serif; color:var(--ink); background:var(--bg); }
+  .app { max-width:390px; margin:0 auto; min-height:100vh; padding:16px; }
+  h1 { font-size:22px; margin:0 0 12px; }
+  h2 { font-size:16px; margin:18px 0 6px; }
+  .meta { color:var(--muted); font-size:13px; margin:0 0 12px; }
+  button { font:inherit; border:0; border-radius:10px; padding:12px 16px; background:var(--brand); color:#fff; cursor:pointer; }
+  button:focus { outline:none; }
+  button.ghost { background:none; color:var(--brand); padding:4px 6px; }
+  .chips { display:grid; grid-template-columns:repeat(7, 1fr); gap:4px; }
+  .chip { height:28px; min-width:0; padding:0; border-radius:6px; font-size:12px; background:#eee; color:var(--ink); }
+  .chip.D { background:#ffe7a8; } .chip.N { background:#c9d4ff; } .chip.Off { background:#eee; }
+  .banner { background:#fff3cd; border-radius:8px; padding:8px 10px; font-size:13px; margin:10px 0; display:none; }
+  .note { background:#fff3cd; border-radius:8px; padding:8px 10px; font-size:13px; margin:10px 0; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px; margin:8px 0; }
+  .row { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+  .tag { font-size:11px; color:var(--muted); }
+  label { display:block; font-size:13px; font-weight:600; margin:8px 0 4px; }
+  .hint { display:block; font-size:12px; color:var(--muted); margin:4px 0 0; }
+  input { font:inherit; padding:10px; border:1px solid var(--line); border-radius:8px; width:100%; }
+  .err { color:var(--warn); font-size:12px; min-height:16px; }
+  .toast { position:fixed; left:50%; top:12px; transform:translateX(-50%); background:#1d1d1f; color:#fff; padding:8px 14px; border-radius:20px; font-size:13px; display:none; }
+  .screen { display:none; } .screen.on { display:block; }
+</style>
+</head>
+<body>
+<div class="toast" id="toast" role="status"></div>
+<div class="app">
+
+  <!-- HOME -->
+  <section class="screen" id="home">
+    <h1>Shifts</h1>
+    <div class="chips" id="chips"></div>
+    <div class="banner" id="banner">Shifts changed. Meal plan updated.</div>
+    <p><button id="optimise">See meal plan</button></p>
+    <h2>Fridge</h2>
+    <div class="card row">
+      <span id="fridgeCount"></span>
+      <button class="ghost" onclick="go('log')">Add food</button>
+    </div>
+    <h2>Next meals</h2>
+    <div id="homePlan"></div>
+  </section>
+
+  <!-- FRIDGE -->
+  <section class="screen" id="log">
+    <h1>Fridge</h1>
+    <label for="dish">Dish</label>
+    <input id="dish">
+    <div class="err" id="errDish"></div>
+    <div style="display:flex; gap:8px">
+      <div style="flex:1">
+        <label for="qty">Portions</label>
+        <input id="qty" inputmode="numeric">
+        <div class="err" id="errQty"></div>
+      </div>
+      <div style="flex:1">
+        <label for="date">Prepped on</label>
+        <input id="date" aria-describedby="dateHint">
+        <span class="hint" id="dateHint">Leave blank for today</span>
+        <div class="err" id="errDate"></div>
+      </div>
+    </div>
+    <button id="submit">Add to fridge</button>
+    <h2>In the fridge</h2>
+    <div id="dishList"></div>
+  </section>
+
+  <!-- MEAL PLAN -->
+  <section class="screen" id="plan">
+    <h1>Meal plan</h1>
+    <div id="planNotes"></div>
+    <div id="planList"></div>
+    <button class="ghost" onclick="go('home')">Back</button>
+  </section>
+
+</div>
+<script>
+const TODAY = new URLSearchParams(location.search).get('today') || '2026-11-20';
+const USE_BY_DAYS = 4;
+const GAP = ['Chicken and rice bowl','Lentil soup with bread','Overnight oats','Egg fried rice','Tuna pasta','Bean chilli','Peanut noodles','Veg omelette'];
+const seed = { rota: Array.from({length:14}, (_,i) => ['D','D','Off','N','N','Off','Off'][i%7]),
+  dishes: [ {name:'Chicken curry', qty:3, date:'2026-11-18'}, {name:'Veg chilli', qty:3, date:'2026-11-19'},
+            {name:'Pasta bake', qty:2, date:'2026-11-19'}, {name:'Stew', qty:2, date:'2026-11-15'} ] };
+let s = JSON.parse(localStorage.getItem('shiftplate-v02') || 'null') || seed;
+const save = () => localStorage.setItem('shiftplate-v02', JSON.stringify(s));
+const days = (a,b) => Math.round((new Date(b)-new Date(a))/864e5);
+const toast = t => { const el=document.getElementById('toast'); el.textContent=t; el.style.display='block'; setTimeout(()=>el.style.display='none',1500); };
+
+// Copy helpers: human dates, shift names, plurals.
+const SHIFT = { D:'Day shift', N:'Night shift', Off:'Day off' };
+const CHIP = { D:'Day', N:'Night', Off:'Off' };
+const MEAL = { 'Pre-shift':'Before shift', 'On-shift':'On shift', 'Post-shift':'After shift', Lunch:'Lunch', Dinner:'Dinner' };
+const addDays = (iso, n) => new Date(new Date(iso).getTime() + n*864e5);
+const human = d => d.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short', timeZone:'UTC' });
+const dayName = i => i===0 ? 'Today' : i===1 ? 'Tomorrow' : human(addDays(TODAY, i));
+const portions = n => n + (n===1 ? ' portion' : ' portions');
+const pastUseBy = d => days(d.date, TODAY) > USE_BY_DAYS;
+const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function go(id){ document.querySelectorAll('.screen').forEach(x=>x.classList.toggle('on', x.id===id)); location.hash=id; render(); }
+
+function buildPlan(){
+  const pool = []; s.dishes.filter(d => !pastUseBy(d)).sort((a,b)=>a.date<b.date?-1:1)
+    .forEach(d => { for(let i=0;i<d.qty;i++) pool.push(d.name); });
+  const plan = []; let g = 0;
+  for (let i=0;i<7;i++){
+    const slots = s.rota[i]==='Off' ? ['Lunch','Dinner'] : ['Pre-shift','On-shift','Post-shift'];
+    plan.push({ day:i, shift:s.rota[i], meals: slots.map(sl => pool.length ? {slot:sl, name:pool.shift(), fridge:true} : {slot:sl, name:GAP[g++%GAP.length], fridge:false}) });
+  }
+  return plan;
+}
+
+const mealRow = m => `<div class="row"><span>${MEAL[m.slot]}: ${esc(m.name)}</span>${m.fridge ? '<span class="tag">From fridge</span>' : '<span class="tag" title="A simple meal for when nothing in the fridge fits.">Quick meal</span>'}</div>`;
+
+function render(){
+  const chips = document.getElementById('chips'); chips.innerHTML='';
+  s.rota.forEach((v,i)=>{ const b=document.createElement('button'); b.className='chip '+v; b.textContent=CHIP[v];
+    b.setAttribute('aria-label', human(addDays(TODAY, i)) + ', ' + SHIFT[v].toLowerCase());
+    b.onclick=()=>{ s.rota[i] = v==='D'?'N':v==='N'?'Off':'D'; save(); document.getElementById('banner').style.display='block'; render(); }; chips.appendChild(b); });
+
+  const fresh = s.dishes.filter(d=>!pastUseBy(d)), old = s.dishes.filter(pastUseBy);
+  const freshN = fresh.reduce((n,d)=>n+Number(d.qty),0), oldN = old.reduce((n,d)=>n+Number(d.qty),0);
+  document.getElementById('fridgeCount').textContent = (freshN || oldN)
+    ? portions(freshN) + ' in the fridge' + (oldN ? ' · ' + oldN + ' past use-by' : '')
+    : 'Fridge is empty';
+
+  const plan = buildPlan();
+  document.getElementById('homePlan').innerHTML = plan.slice(0,2).map(d=>`<div class="card"><b>${dayName(d.day)} · ${SHIFT[d.shift]}</b>${d.meals.map(mealRow).join('')}</div>`).join('');
+
+  const notes = old.map(d=>`<p class="note">${esc(d.name)} is past its use-by date, so it's not in the plan.</p>`);
+  if (!fresh.length) notes.push('<p class="note">Nothing in the fridge, so these are all quick meals.</p>');
+  document.getElementById('planNotes').innerHTML = notes.join('');
+  document.getElementById('planList').innerHTML = plan.map(d=>`<div class="card"><b>${human(addDays(TODAY, d.day))} · ${SHIFT[d.shift]}</b>${d.meals.map(mealRow).join('')}</div>`).join('');
+
+  document.getElementById('dishList').innerHTML = s.dishes.length
+    ? s.dishes.map((d,i)=>`<div class="card row"><span>${esc(d.name)} · ${portions(Number(d.qty))}<br><span class="tag">${pastUseBy(d) ? 'Past use-by' : 'Prepped ' + human(new Date(d.date))}</span></span><button class="ghost" aria-label="Remove ${esc(d.name.toLowerCase())}" onclick="del(${i})">Remove</button></div>`).join('')
+    : '<p class="meta">Nothing in the fridge yet</p>';
+}
+
+function del(i){ s.dishes.splice(i,1); save(); render(); }
+
+document.getElementById('submit').onclick = () => {
+  const name = dish.value.trim(), rawQty = qty.value.trim(), q = Number(rawQty), d = date.value.trim() || TODAY;
+  errDish.textContent = name ? '' : 'Enter a dish name';
+  errQty.textContent = !rawQty ? 'Enter how many portions' : (q > 0) ? '' : 'Portions must be a number, 1 or more';
+  errDate.textContent = /^\d{4}-\d{2}-\d{2}$/.test(d) ? '' : 'Enter the date like 2026-11-18';
+  if (errDish.textContent || errQty.textContent || errDate.textContent) return;
+  s.dishes.push({name, qty:q, date:d}); save(); dish.value=qty.value=date.value=''; toast(name + ' added'); render();
+};
+document.getElementById('optimise').onclick = () => { document.getElementById('banner').style.display='none'; go('plan'); };
+
+go((location.hash||'#home').slice(1));
+</script>
+</body>
+</html>

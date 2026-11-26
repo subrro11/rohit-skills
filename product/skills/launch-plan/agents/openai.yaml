@@ -1,0 +1,6 @@
+interface:
+  display_name: "Launch Plan"
+  short_description: "Tiered rollout, pass/fail gates, comms and a rollback plan from a PRD"
+  default_prompt: "Write a launch plan for "
+policy:
+  allow_implicit_invocation: true

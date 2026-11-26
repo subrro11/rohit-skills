@@ -1,0 +1,6 @@
+interface:
+  display_name: "UX Review"
+  short_description: "Task-led usability review with ranked findings and a fix list"
+  default_prompt: "Review the UX of "
+policy:
+  allow_implicit_invocation: true

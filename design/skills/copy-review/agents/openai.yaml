@@ -1,0 +1,6 @@
+interface:
+  display_name: "Copy Review"
+  short_description: "Severity-ranked copy findings with rewrites, a glossary and an apply list"
+  default_prompt: "Review the copy in "
+policy:
+  allow_implicit_invocation: true

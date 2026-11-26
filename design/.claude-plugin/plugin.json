@@ -1,0 +1,10 @@
+{
+  "name": "design",
+  "version": "0.5.0",
+  "description": "Design skills: a copy review that finds and rewrites unclear UI copy, with reasons, against a house style of plain, minimal, sentence-case text.",
+  "author": { "name": "Rohit Subramaniam", "url": "https://github.com/subrro11" },
+  "homepage": "https://github.com/subrro11/rohit-skills/tree/main/design",
+  "repository": "https://github.com/subrro11/rohit-skills",
+  "license": "MIT",
+  "keywords": ["design", "ux-writing", "content-design", "microcopy", "copy-review"]
+}
