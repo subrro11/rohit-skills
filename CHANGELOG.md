@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0 · 2026-11-27
+- Added **Experiment Design** (`product/skills/experiment-design`). It starts from the decision, picks a test the sample can actually support, shows the sample-size maths, and writes the ship, iterate or kill rule before launch. It also sizes tests on their own and reads out finished ones.
+- Example: a one-tap check-in test inside a 20-nurse pilot for the made-up Shiftplate, where an A/B test can't work and a crossover can. A Python script reproduces every number.
+
 ## 0.4.0 · 2026-11-13
 - Added **Deep Research** (`product/skills/deep-research`): decision-led research on a company or an idea, run in order: company (or problem), competitors, news, trends, then frameworks. It cites only sources it read, logs every claim in an evidence ledger with a quote and a confidence grade, lists gaps as "Evidence needed:", and maps findings to PRD sections.
   - Three modes: full pass, quick check, and gap fill for an existing PRD.

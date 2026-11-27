@@ -11,6 +11,7 @@ Agent skills I use for product work, grouped by discipline. Works with **Claude*
 | Discipline | Skill | What it does |
 |---|---|---|
 | **product** | [Deep Research](product/skills/deep-research/) | Researches a company or idea in order (company, competitors, news, trends, then frameworks like five forces and positioning maps) and writes a cited report with every claim graded, gaps listed as Evidence needed, and a handoff into the PRD |
+| **product** | [Experiment Design](product/skills/experiment-design/) | Designs a test your sample can actually support, shows the sample-size maths, and sets the ship, iterate or kill rule before launch |
 | **product** | [PRD Generator and Product Quiz Agent](product/skills/prd-generator/) | Quizzes you through the product questions (problem, PMF, north star, goals and non-goals, prioritisation), writes or reviews the PRD, then hands off a prototype prompt for a coding agent |
 
 Each discipline is its own plugin (`rohit-skills › product › prd-generator`), so you can install only the area you need.
