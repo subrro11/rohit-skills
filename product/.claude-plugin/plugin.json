@@ -1,7 +1,7 @@
 {
   "name": "product",
-  "version": "0.4.0",
-  "description": "Product management skills: deep research on companies and ideas (company, competitors, news, trends, frameworks) with cited, confidence-graded reports, and a PRD generator and product quiz agent that works through PMF, north star, goals and prioritisation, then hands off a prototype prompt to a coding agent.",
+  "version": "0.5.0",
+  "description": "Product management skills: deep research on companies and ideas with cited, graded reports; a PRD generator and product quiz agent; and experiment design that picks a test the sample can support and sets the decision rule before launch.",
   "author": {
     "name": "Rohit Subramaniam",
     "url": "https://github.com/subrro11"
@@ -17,6 +17,9 @@
     "product-market-fit",
     "north-star",
     "prioritisation",
-    "prototyping"
+    "prototyping",
+    "experimentation",
+    "ab-testing",
+    "statistics"
   ]
 }

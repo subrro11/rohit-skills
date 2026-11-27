@@ -1,0 +1,6 @@
+interface:
+  display_name: "Experiment Design"
+  short_description: "Decision-ready experiments with sample-size maths and a rule set before launch"
+  default_prompt: "Design an experiment to test "
+policy:
+  allow_implicit_invocation: true
